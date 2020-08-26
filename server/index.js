@@ -10,7 +10,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // Postgres Client Setup
-const { Pool, Client } = require('pg');
+const { Pool } = require('pg');
 const pgClient = new Pool({
   user: keys.pgUser,
   host: keys.pgHost,
@@ -24,9 +24,6 @@ pgClient.on('connect', () => console.log('Connected to DB.'));
 pgClient
   .query('CREATE TABLE IF NOT EXISTS values (number INT)')
   .catch(err => console.log(err));
-
-const client = new Client();
-client.connect(() => console.log('Connected client'));
 
 // Redis Client Setup
 const redis = require('redis');
